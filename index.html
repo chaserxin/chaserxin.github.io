@@ -70,8 +70,6 @@
     			
             
     			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
-    			
             
     			
     			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
@@ -154,35 +152,49 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Collection与Iterator的remove()方法区别与ConcurrentModificationException异常" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/08/hello-world/">Hello World</a>
+      <a class="article-title" href="/2017/04/09/Collection与Iterator的remove()方法区别与ConcurrentModificationException异常/">Collection与Iterator的remove()方法区别与ConcurrentModificationException异常</a>
     </h1>
   
 
         
-        <a href="/2017/04/08/hello-world/" class="archive-article-date">
-  	<time datetime="2017-04-08T12:43:37.836Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-08</time>
+        <a href="/2017/04/09/Collection与Iterator的remove()方法区别与ConcurrentModificationException异常/" class="archive-article-date">
+  	<time datetime="2017-04-09T02:53:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>在我的上一篇文章  <a href="http://www.jianshu.com/p/5717bb63762f" target="_blank" rel="external">Java中三种遍历Collection中元素的方法(Iterator、forEach、for循环)对比</a> 中提到Iterator和forEach循环在遍历Collection中元素时最大的差别就是在方法<code>remove()</code>上,由于在Iterator的<code>remove()</code>方法中维护一个标志位,所以删除元素时不会出现异常，所以本篇文章就深入Collection与Iterator的源码看看内部究竟是如何实现的。</p>
+<h2 id="一-Collection及其实现类ArrayList的部分源码"><a href="#一-Collection及其实现类ArrayList的部分源码" class="headerlink" title="一. Collection及其实现类ArrayList的部分源码"></a>一. Collection及其实现类ArrayList的部分源码</h2><h3 id="1-Collection内部源码"><a href="#1-Collection内部源码" class="headerlink" title="1.Collection内部源码"></a>1.Collection内部源码</h3><p>首先我们来看一下Collection内部源码（为方便分析，此处只展示与本篇文章有关的部分）：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Iterable</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span></span>;</div><div class="line"></div><div class="line">    <span class="function">Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *  此处省去其他方法定义</div><div class="line">     */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可以看到Collection是一个接口，内部定义了<code>remove()</code>与<code>iterator()</code>方法。</p>
+<h3 id="2-ArrayList内部源码"><a href="#2-ArrayList内部源码" class="headerlink" title="2.ArrayList内部源码"></a>2.ArrayList内部源码</h3><p>由于Collection接口内部无具体实现，所以我们来看Collection的一个最常用的实现类ArrayList内部源码（为方便分析，此处只展示与本篇文章有关的部分）：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (o == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; size; index++)</div><div class="line">                <span class="keyword">if</span> (elementData[index] == <span class="keyword">null</span>) &#123;</div><div class="line">                    fastRemove(index);</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; size; index++)</div><div class="line">                <span class="keyword">if</span> (o.equals(elementData[index])) &#123;</div><div class="line">                    fastRemove(index);</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">fastRemove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">        modCount++;</div><div class="line">        <span class="keyword">int</span> numMoved = size - index - <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span> (numMoved &gt; <span class="number">0</span>)</div><div class="line">            System.arraycopy(elementData, index+<span class="number">1</span>, elementData, index,</div><div class="line">                             numMoved);</div><div class="line">        elementData[--size] = <span class="keyword">null</span>; <span class="comment">// clear to let GC do its work</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">/* -----------------------我是便于观察的分割线----------------------- */</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Itr();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Itr</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line">        <span class="keyword">int</span> cursor;       <span class="comment">// index of next element to return</span></div><div class="line">        <span class="keyword">int</span> lastRet = -<span class="number">1</span>; <span class="comment">// index of last element returned; -1 if no such</span></div><div class="line">        <span class="keyword">int</span> expectedModCount = modCount;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> cursor != size;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">        <span class="function"><span class="keyword">public</span> E <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">            checkForComodification();</div><div class="line">            <span class="keyword">int</span> i = cursor;</div><div class="line">            <span class="keyword">if</span> (i &gt;= size)</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</div><div class="line">            Object[] elementData = ArrayList.<span class="keyword">this</span>.elementData;</div><div class="line">            <span class="keyword">if</span> (i &gt;= elementData.length)</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</div><div class="line">            cursor = i + <span class="number">1</span>;</div><div class="line">            <span class="keyword">return</span> (E) elementData[lastRet = i];</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">if</span> (lastRet &lt; <span class="number">0</span>)</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</div><div class="line">            checkForComodification();</div><div class="line"></div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                ArrayList.<span class="keyword">this</span>.remove(lastRet);</div><div class="line">                cursor = lastRet;</div><div class="line">                lastRet = -<span class="number">1</span>;</div><div class="line">                expectedModCount = modCount;</div><div class="line">            &#125; <span class="keyword">catch</span> (IndexOutOfBoundsException ex) &#123;</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">checkForComodification</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">if</span> (modCount != expectedModCount)</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *  此处省去其他方法定义</div><div class="line">     */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在ArrayList中并没有直接实现Collection接口，而是通过继承AbstractList抽象类，而AbstractList抽象类又继承了AbstractCollection抽象类，最终AbstractCollection抽象类实现Collection接口；所以ArrayList间接实现了Collection接口，有兴趣的大佬可以自己去研究下为什么这样子设计，在这里就不多加讨论。</p>
+<p>可以看到在ArrayList中有实现<code>remove()</code>与<code>iterator()</code>方法，并且通过<code>iterator()</code>方法得到的内部类Itr实现了Iterator接口，在Itr内部类中也有实现<code>remove()</code>方法，下面就来具体的探讨其中的区别。</p>
+<h2 id="二-ArrayList的remove-方法分析"><a href="#二-ArrayList的remove-方法分析" class="headerlink" title="二. ArrayList的remove()方法分析"></a>二. ArrayList的remove()方法分析</h2><h3 id="1-remove-方法"><a href="#1-remove-方法" class="headerlink" title="1.remove()方法"></a>1.remove()方法</h3><p>在ArrayList的<code>remove()</code>方法内部的实现主要是通过循环找到元素的下标， 然后调用私有的<code>fastRemove()</code>方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fastRemove(index);</div></pre></td></tr></table></figure></p>
+<p><code>remove()</code>方法没啥好讲的，关键在于调用的<code>fastRemove()</code>方法上。</p>
+<h3 id="2-fastRemove-方法"><a href="#2-fastRemove-方法" class="headerlink" title="2.fastRemove()方法"></a>2.fastRemove()方法</h3><p>fastRemove()方法中会先修改modCount的值，然后将通过复制一个新的数组的方法将原来index位置上的值覆盖掉，最后数组大小减一。我们重点关注<code>fastRemove()</code>方法的第一行代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">modCount++;</div></pre></td></tr></table></figure></p>
+<p>也就是每次调用<code>remove()</code>方法都会使modCount的值加一。那么modCount变量又是什么呢？</p>
+<h3 id="3-modCount变量"><a href="#3-modCount变量" class="headerlink" title="3.modCount变量"></a>3.modCount变量</h3><p>modCount在ArrayList中没有定义，是在ArrayList的父类AbstractList抽象类中定义的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractCollection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">transient</span> <span class="keyword">int</span> modCount = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     *  此处省去其他方法定义</div><div class="line">     */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>modCount的作用是记录操作（添加删除）ArrayList中元素的次数</strong>（这个很关键），每次操作ArrayList中元素后就会使modCount加一。</p>
+<h2 id="三-Iterator的remove-方法分析"><a href="#三-Iterator的remove-方法分析" class="headerlink" title="三. Iterator的remove()方法分析"></a>三. Iterator的remove()方法分析</h2><p>看源码可知ArrayList通过<code>iterator()</code>方法得到了一个内部类Itr，这个内部类实现了Iterator接口，我们重点分析内部类Itr中的实现。</p>
+<h3 id="1-expectedModCount-变量"><a href="#1-expectedModCount-变量" class="headerlink" title="1.expectedModCount 变量"></a>1.expectedModCount 变量</h3><p>在内部类Itr中定义了一个变量expectedModCount ：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> expectedModCount = modCount;</div></pre></td></tr></table></figure></p>
+<p><strong>expectedModCount 只在new一个Itr对象时初始化为modCount</strong></p>
+<h3 id="2-next-与remove-方法"><a href="#2-next-与remove-方法" class="headerlink" title="2.next()与remove()方法"></a>2.next()与remove()方法</h3><p>在调用Itr对象的<code>next()</code>与<code>remove()</code>方法时第一步会先调用<code>checkForComodification()</code>方法。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">checkForComodification();</div></pre></td></tr></table></figure></p>
+<p>并且在<code>remove()</code>方法中会调用<code>ArrayList.this.remove(lastRet)</code>方法(也就是具体的ArrayList对象的remove()方法，上面我们讲过，在ArrayList对象的remove()方法中会使得modCount的值加一)，<strong>然后修改expectedModCount 的值为modCount</strong>。</p>
+<h3 id="3-checkForComodification-方法"><a href="#3-checkForComodification-方法" class="headerlink" title="3.checkForComodification()方法"></a>3.checkForComodification()方法</h3><p><code>checkForComodification()</code>会检查expectedModCount与modCount 是否相等，如果不相等就会抛出ConcurrentModificationException异常。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">checkForComodification</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (modCount != expectedModCount)</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="四-总结"><a href="#四-总结" class="headerlink" title="四. 总结"></a>四. 总结</h2><p>通过上面的分析我们可以得出，Collection与Iterator的remove()方法最大的区别就是：<br><strong>Iterator的remove()方法会在删除元素后将modCount 的值赋值给expectedModCount，使其又相等</strong>。</p>
+<h3 id="1-如果我们在Iterator循环中调用Collection的remove-方法"><a href="#1-如果我们在Iterator循环中调用Collection的remove-方法" class="headerlink" title="1.如果我们在Iterator循环中调用Collection的remove()方法"></a>1.如果我们在Iterator循环中调用Collection的remove()方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public static void display(Collection&lt;Object&gt; collection) &#123;</div><div class="line">    Iterator&lt;Object&gt; it = collection.iterator();</div><div class="line"></div><div class="line">    // 会抛出ConcurrentModificationException异常</div><div class="line">	while(it.hasNext())	&#123;</div><div class="line">		Object obj = it.next();</div><div class="line">		collection.remove(obj ); </div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于collection.remove(obj )只会删除obj元素后将modCount 的值加一，并不会修改expectedModCount的值，所以当下一次调用it.next()方法时发现modCount != expectedModCount，将抛出ConcurrentModificationException异常。</p>
+<h3 id="2-如果我们在Iterator循环中调用Iterator的remove-方法"><a href="#2-如果我们在Iterator循环中调用Iterator的remove-方法" class="headerlink" title="2.如果我们在Iterator循环中调用Iterator的remove()方法"></a>2.如果我们在Iterator循环中调用Iterator的remove()方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public static void display(Collection&lt;Object&gt; collection) &#123;</div><div class="line">    Iterator&lt;Object&gt; it = collection.iterator();</div><div class="line">    // 正常执行</div><div class="line">	while(it.hasNext())	&#123;</div><div class="line">		Object obj = it.next();</div><div class="line">		it.remove(obj ); </div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于it.remove(obj )会在删除obj元素后将modCount 的值加一，并将expectedModCount重新赋值为modCount ，使其相等，所以当下一次调用it.next()方法时发现modCount == expectedModCount，正常执行。</p>
 
       
 
@@ -191,11 +203,112 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/08/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/04/09/Collection与Iterator的remove()方法区别与ConcurrentModificationException异常/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Java中三种遍历Collection中元素的方法(Iterator、forEach、for循环)对比1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/09/Java中三种遍历Collection中元素的方法(Iterator、forEach、for循环)对比1/">Java中三种遍历Collection中元素的方法(Iterator、forEach、for循环)对比</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/09/Java中三种遍历Collection中元素的方法(Iterator、forEach、for循环)对比1/" class="archive-article-date">
+  	<time datetime="2017-04-09T02:15:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><em>[注]仅对比此三种方法在实现下面的此功能中的区别</em><br><strong>在实现遍历并选择序列中的对象,而客户端程序员不必知道或关心该序列底层的结构</strong> <a href="https://book.douban.com/subject/2130190/" target="_blank" rel="external">(摘自Java编程思想第四版)</a><br>也就是说在使用此方法时,不必考虑需要遍历的是ArrayList、LinkedList还是HashSet中的元素</p>
+</blockquote>
+<h2 id="一-三种方法实现方式代码"><a href="#一-三种方法实现方式代码" class="headerlink" title="一. 三种方法实现方式代码"></a>一. 三种方法实现方式代码</h2><h3 id="1-1-Iterator"><a href="#1-1-Iterator" class="headerlink" title="1.1 Iterator"></a>1.1 Iterator</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public static void display(Iterator&lt;Object&gt; it) &#123;</div><div class="line">	while(it.hasNext())	&#123;</div><div class="line">		Object obj = it.next();</div><div class="line">		System.out.println(obj);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="1-2-forEach"><a href="#1-2-forEach" class="headerlink" title="1.2 forEach"></a>1.2 forEach</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">(Collection&lt;Object&gt; co)</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span> (Object obj : co) &#123;</div><div class="line">		System.out.print(obj);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="1-3-for循环"><a href="#1-3-for循环" class="headerlink" title="1.3 for循环"></a>1.3 for循环</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">(Collection&lt;Object&gt; co)</span> </span>&#123;</div><div class="line">	Object[] obj = co.toArray(<span class="keyword">new</span> Object[co.size()]);</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;obj.length; i++) &#123;</div><div class="line">	System.out.print(s[i]);</div><div class="line">	&#125;	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="二-三种方法实现方式对比"><a href="#二-三种方法实现方式对比" class="headerlink" title="二. 三种方法实现方式对比"></a>二. 三种方法实现方式对比</h2><h3 id="2-1-for循环分析"><a href="#2-1-for循环分析" class="headerlink" title="2.1 for循环分析"></a>2.1 for循环分析</h3><ul>
+<li>在for循环中实现中,由于Collection接口本身没有获取Collection中元素的方法,所以必须将Collection先转化为一个Array再进行遍历(Collection的不同实现中有不同的获取元素的方法,由于此处是讨论的是通用的实现方法,所以不考虑具体的实现),因此需要新建一个数组(实际上用 <em><t> T[] toArray(T[] a)</t></em>  方法实现是需要创建两个数组的)用来容纳原Collection中的所有元素,这样子增加了额外的开销,另一方面由于数组中的元素是由Collection中的元素复制过来的,所以使得我们对原Collection中的元素进行操作(如删除元素)变得困难(虽然可以使用Collection中的remove(Object o)方法删除元素,但是方法只是删除Collection中第一个与o匹配的元素,过于局限)。</li>
+</ul>
+<h3 id="2-2-forEach分析"><a href="#2-2-forEach分析" class="headerlink" title="2.2 forEach分析"></a>2.2 forEach分析</h3><ul>
+<li>forEach是 <em>JDK1.5</em> 新加入的一个功能,用于更简单的实现对数组或者Collection对象(实现iterable接口的集合)进行遍历,其实在实现对Collection对象的遍历时,编译器对forEach的实现用的就是Iterator：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(Object obj : collection) &#123;&#125;</div><div class="line"><span class="comment">//相当于：</span></div><div class="line"><span class="keyword">for</span>(Iterator iterator = collection.iterator(); iterator.hasNext(); ) &#123;&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>但是在forEach实现中如果需要对Collection中的元素进行操作(如删除元素),那么系统将会抛出<strong>ConcurrentModificationException</strong>异常,这也是他与Iterator实现方式的唯一区别</li>
+</ul>
+<h3 id="2-3-Iterator分析"><a href="#2-3-Iterator分析" class="headerlink" title="2.3 Iterator分析"></a>2.3 Iterator分析</h3><ul>
+<li><p>Iterator是Java专门为了实现对Collection中的元素的遍历而设计的一个接口,使用Iterator进行遍历时,不用担心此Collection容器的具体是现是什么,关于Iterator的详细介绍Iterator的中的方法:</p>
+<p>(1)next()获取序列中的下一个元素<br>(2) hasNext()检查序列中是否还有元素<br>(3) remove()将迭代器新进返回的元素删除</p>
+</li>
+<li><p>其中Iterator与forEach最大的差别就是在方法<code>remove()</code>上,由于在Iterator的remove()方法中维护一个标志位,所以删除元素时不会出现异常    </p>
+</li>
+</ul>
+<h2 id="三-总结"><a href="#三-总结" class="headerlink" title="三. 总结"></a>三. 总结</h2><ul>
+<li>通过上面的代码,可以很清楚的看到在实现一个通用的遍历Collection中的元素时,Iterator与forEach这两种实现比for循环的代码更简洁、实现更容易。</li>
+<li>在实际使用过程中,如只是单纯的对Collection中的元素进行遍历,那么使用forEach相对来说比较方面,如果需要在遍历的过程中对Collection中的元素进行操作(如删除元素),那么无疑必须使用Iterator</li>
+</ul>
+<hr>
+<p>续集：从源码上分析操作(删除)元素时为什么建议Iterator循环：<br><a href="http://www.jianshu.com/p/25f6856f8f51" target="_blank" rel="external">Collection与Iterator的remove()方法区别与ConcurrentModificationException异常</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/09/Java中三种遍历Collection中元素的方法(Iterator、forEach、for循环)对比1/">展开全文 >></a>
         </p>
       
 
@@ -260,8 +373,6 @@
       
     
       
-      
-      
     
       
       
@@ -273,15 +384,13 @@
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -300,6 +409,10 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -344,10 +457,6 @@
     	</section>
     
 
-    
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-    	</section>
     
 
     

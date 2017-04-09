@@ -6,19 +6,37 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java中三种遍历Collection中元素的方法(Iterator、forEach、for循环)对比 | 我才不花心的博客</title>
+  <title>利用Sentris特价服务器和Shadowsocks搭建自己的梯子 | 我才不花心的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[注]仅对比此三种方法在实现下面的此功能中的区别在实现遍历并选择序列中的对象,而客户端程序员不必知道或关心该序列底层的结构 (摘自Java编程思想第四版)也就是说在使用此方法时,不必考虑需要遍历的是ArrayList、LinkedList还是HashSet中的元素  一. 三种方法实现方式代码1.1 Iterator123456public static void display(Iterato">
-<meta name="keywords" content="Java">
+  <meta name="description" content="博主之前一直使用蓝灯fq，由于蓝灯的速度实在太渣以及流量太少（毕竟免费），并且看过一些文章说免费的代理可能存在py，在无法忍受的前提下，决定自己动手搭建梯子。最开始是找到了一位大牛的博客(老高的技术博客)，里面推荐了几个国外的vps，也不是很贵，本来准备入手了，但是闲着无聊多看了下底下的评论，发现另外一位 dalao(尼玛博客)推荐了一个非常便宜的Sentris服务器，顿时眼前一亮（主要是没钱），">
+<meta name="keywords" content="翻墙">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java中三种遍历Collection中元素的方法(Iterator、forEach、for循环)对比">
-<meta property="og:url" content="http://yoursite.com/2017/04/09/Java中三种遍历Collection中元素的方法(Iterator、forEach、for循环)对比1/index.html">
+<meta property="og:title" content="利用Sentris特价服务器和Shadowsocks搭建自己的梯子">
+<meta property="og:url" content="http://yoursite.com/2017/04/09/利用Sentris特价服务器和Shadowsocks搭建自己的梯子/index.html">
 <meta property="og:site_name" content="我才不花心的博客">
-<meta property="og:description" content="[注]仅对比此三种方法在实现下面的此功能中的区别在实现遍历并选择序列中的对象,而客户端程序员不必知道或关心该序列底层的结构 (摘自Java编程思想第四版)也就是说在使用此方法时,不必考虑需要遍历的是ArrayList、LinkedList还是HashSet中的元素  一. 三种方法实现方式代码1.1 Iterator123456public static void display(Iterato">
-<meta property="og:updated_time" content="2017-04-09T02:51:24.025Z">
+<meta property="og:description" content="博主之前一直使用蓝灯fq，由于蓝灯的速度实在太渣以及流量太少（毕竟免费），并且看过一些文章说免费的代理可能存在py，在无法忍受的前提下，决定自己动手搭建梯子。最开始是找到了一位大牛的博客(老高的技术博客)，里面推荐了几个国外的vps，也不是很贵，本来准备入手了，但是闲着无聊多看了下底下的评论，发现另外一位 dalao(尼玛博客)推荐了一个非常便宜的Sentris服务器，顿时眼前一亮（主要是没钱），">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-97bd5222524d5700.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-1c99555df652ec79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-526e791438ba4687.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-775f9a2feeba08b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-95f7f0183421510f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-9567f18e8a93db99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-c233869c16cb52f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-abff22c3f0cfab0c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-1150c389e692c0f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-0e6013ba263c8db4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-5cacac7075dafef5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-c0c6518c3a7d2312.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-36a0682c83a4bacf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-89c297131a544a0b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-ff17bf4455a36d40.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-ed628e338e3b04a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2671458-91d046c8e431bb8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-04-09T03:06:39.698Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java中三种遍历Collection中元素的方法(Iterator、forEach、for循环)对比">
-<meta name="twitter:description" content="[注]仅对比此三种方法在实现下面的此功能中的区别在实现遍历并选择序列中的对象,而客户端程序员不必知道或关心该序列底层的结构 (摘自Java编程思想第四版)也就是说在使用此方法时,不必考虑需要遍历的是ArrayList、LinkedList还是HashSet中的元素  一. 三种方法实现方式代码1.1 Iterator123456public static void display(Iterato">
+<meta name="twitter:title" content="利用Sentris特价服务器和Shadowsocks搭建自己的梯子">
+<meta name="twitter:description" content="博主之前一直使用蓝灯fq，由于蓝灯的速度实在太渣以及流量太少（毕竟免费），并且看过一些文章说免费的代理可能存在py，在无法忍受的前提下，决定自己动手搭建梯子。最开始是找到了一位大牛的博客(老高的技术博客)，里面推荐了几个国外的vps，也不是很贵，本来准备入手了，但是闲着无聊多看了下底下的评论，发现另外一位 dalao(尼玛博客)推荐了一个非常便宜的Sentris服务器，顿时眼前一亮（主要是没钱），">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2671458-97bd5222524d5700.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="我才不花心的博客" type="application/atom+xml">
   
@@ -152,55 +170,119 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java中三种遍历Collection中元素的方法(Iterator、forEach、for循环)对比1" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-利用Sentris特价服务器和Shadowsocks搭建自己的梯子" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java中三种遍历Collection中元素的方法(Iterator、forEach、for循环)对比
+      利用Sentris特价服务器和Shadowsocks搭建自己的梯子
     </h1>
   
 
         
-        <a href="/2017/04/09/Java中三种遍历Collection中元素的方法(Iterator、forEach、for循环)对比1/" class="archive-article-date">
-  	<time datetime="2017-04-09T02:15:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
+        <a href="/2017/04/09/利用Sentris特价服务器和Shadowsocks搭建自己的梯子/" class="archive-article-date">
+  	<time datetime="2017-04-09T03:06:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p><em>[注]仅对比此三种方法在实现下面的此功能中的区别</em><br><strong>在实现遍历并选择序列中的对象,而客户端程序员不必知道或关心该序列底层的结构</strong> <a href="https://book.douban.com/subject/2130190/" target="_blank" rel="external">(摘自Java编程思想第四版)</a><br>也就是说在使用此方法时,不必考虑需要遍历的是ArrayList、LinkedList还是HashSet中的元素</p>
+        <p>博主之前一直使用蓝灯fq，由于蓝灯的速度实在太渣以及流量太少（毕竟免费），并且看过一些文章说免费的代理可能存在py，在无法忍受的前提下，决定自己动手搭建梯子。最开始是找到了一位大牛的博客(<a href="https://blog.phpgao.com/" target="_blank" rel="external">老高的技术博客</a>)，里面推荐了几个国外的vps，也不是很贵，本来准备入手了，但是闲着无聊多看了下底下的评论，发现另外一位 dalao(<a href="http://nimaboke.com/" target="_blank" rel="external">尼玛博客</a>)推荐了一个非常便宜的Sentris服务器，顿时眼前一亮（主要是没钱），于是开启了愉快的造梯子之旅。</p>
+<h2 id="一、购买Sentris特价服务器"><a href="#一、购买Sentris特价服务器" class="headerlink" title="一、购买Sentris特价服务器"></a>一、购买Sentris特价服务器</h2><p>Sentris是一家老牌美国IDC，之前也有用FreeServer.US的牌子推出过免费的vps，不过现在已经不提供了免费的了，但是现在还有活动，最低可以用$5.99 USD买三年的一台很小的vps，只有64M内存（博主买的就是这个），还是很实惠的。</p>
+<blockquote>
+<p>【注】：由于博主只是平时fq不怎么看视频，所以用64M的内存搭建一个梯子平时用用并且不看高清视频还是没问题的，如果你有到YouTube上看1080P视频的需求，亲测这个64M内存的vps是绝对不行的</p>
 </blockquote>
-<h2 id="一-三种方法实现方式代码"><a href="#一-三种方法实现方式代码" class="headerlink" title="一. 三种方法实现方式代码"></a>一. 三种方法实现方式代码</h2><h3 id="1-1-Iterator"><a href="#1-1-Iterator" class="headerlink" title="1.1 Iterator"></a>1.1 Iterator</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public static void display(Iterator&lt;Object&gt; it) &#123;</div><div class="line">	while(it.hasNext())	&#123;</div><div class="line">		Object obj = it.next();</div><div class="line">		System.out.println(obj);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="1-2-forEach"><a href="#1-2-forEach" class="headerlink" title="1.2 forEach"></a>1.2 forEach</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">(Collection&lt;Object&gt; co)</span> </span>&#123;</div><div class="line">	<span class="keyword">for</span> (Object obj : co) &#123;</div><div class="line">		System.out.print(obj);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="1-3-for循环"><a href="#1-3-for循环" class="headerlink" title="1.3 for循环"></a>1.3 for循环</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">(Collection&lt;Object&gt; co)</span> </span>&#123;</div><div class="line">	Object[] obj = co.toArray(<span class="keyword">new</span> Object[co.size()]);</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;obj.length; i++) &#123;</div><div class="line">	System.out.print(s[i]);</div><div class="line">	&#125;	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="二-三种方法实现方式对比"><a href="#二-三种方法实现方式对比" class="headerlink" title="二. 三种方法实现方式对比"></a>二. 三种方法实现方式对比</h2><h3 id="2-1-for循环分析"><a href="#2-1-for循环分析" class="headerlink" title="2.1 for循环分析"></a>2.1 for循环分析</h3><ul>
-<li>在for循环中实现中,由于Collection接口本身没有获取Collection中元素的方法,所以必须将Collection先转化为一个Array再进行遍历(Collection的不同实现中有不同的获取元素的方法,由于此处是讨论的是通用的实现方法,所以不考虑具体的实现),因此需要新建一个数组(实际上用 <em><t> T[] toArray(T[] a)</t></em>  方法实现是需要创建两个数组的)用来容纳原Collection中的所有元素,这样子增加了额外的开销,另一方面由于数组中的元素是由Collection中的元素复制过来的,所以使得我们对原Collection中的元素进行操作(如删除元素)变得困难(虽然可以使用Collection中的remove(Object o)方法删除元素,但是方法只是删除Collection中第一个与o匹配的元素,过于局限)。</li>
-</ul>
-<h3 id="2-2-forEach分析"><a href="#2-2-forEach分析" class="headerlink" title="2.2 forEach分析"></a>2.2 forEach分析</h3><ul>
-<li>forEach是 <em>JDK1.5</em> 新加入的一个功能,用于更简单的实现对数组或者Collection对象(实现iterable接口的集合)进行遍历,其实在实现对Collection对象的遍历时,编译器对forEach的实现用的就是Iterator：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(Object obj : collection) &#123;&#125;</div><div class="line"><span class="comment">//相当于：</span></div><div class="line"><span class="keyword">for</span>(Iterator iterator = collection.iterator(); iterator.hasNext(); ) &#123;&#125;</div></pre></td></tr></table></figure>
+<p>1.<strong>Sentris特价服务器购买地址：</strong><a href="http://freeserver.us/plans/" target="_blank" rel="external">http://freeserver.us/plans/</a></p>
+<p>2.在弹出来的页面上点击：New LXC/OpenVZ SATA RAID from $0.16/mo*</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-97bd5222524d5700.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>3.在出现的面板中，点击：Order Now</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-1c99555df652ec79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>4.在弹出的新网页中选择第一个vps：New OVZ SATA SEA Custom - Based VPS: New OpenVZ</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-526e791438ba4687.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>5.然后点击Continue按钮，进入一个新窗口选择vps的配置，vps的配置一共有四项：<code>Product/Service</code>、<code>Configurable Options</code>、<code>Addons</code>、<code>Additional Required Information</code>。</p>
 <ul>
-<li>但是在forEach实现中如果需要对Collection中的元素进行操作(如删除元素),那么系统将会抛出<strong>ConcurrentModificationException</strong>异常,这也是他与Iterator实现方式的唯一区别</li>
+<li>配置<strong>Product/Service</strong>：产品的名字和产品的描述，这里只需要将Billing Cycle这一项改成购买36个月</li>
 </ul>
-<h3 id="2-3-Iterator分析"><a href="#2-3-Iterator分析" class="headerlink" title="2.3 Iterator分析"></a>2.3 Iterator分析</h3><ul>
-<li><p>Iterator是Java专门为了实现对Collection中的元素的遍历而设计的一个接口,使用Iterator进行遍历时,不用担心此Collection容器的具体是现是什么,关于Iterator的详细介绍Iterator的中的方法:</p>
-<p>(1)next()获取序列中的下一个元素<br>(2) hasNext()检查序列中是否还有元素<br>(3) remove()将迭代器新进返回的元素删除</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-775f9a2feeba08b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>配置<strong>Configurable Options</strong>：vps的配置选项，改成和下图一样就行了，其实主要就是改了Bandwidth in MB，因为默认的带宽是500G每个月的，<strong>需要多交钱</strong>，实际上250G就够了。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-95f7f0183421510f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>配置<strong>Addons</strong>：这个选项是额外的扩展，可以新加硬盘、内存和交换区，<strong>但是要另加钱！！！</strong>，默认什么都不加就好了。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-9567f18e8a93db99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>配置<strong>Additional Required Information</strong>：一些附加的必须的信息，你可以把它当做是一个用户协议，你只能每一项的按照它的选择来，不然不卖给你！</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-c233869c16cb52f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>6.点击Continu按钮，会弹出购物车。如果按照我的教程一步一步的点击的话一共是$5.99 USD。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-abff22c3f0cfab0c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>7.然后点击Checkout按钮提交订单，如果你没注册的话会先让你填信息注册。然后就是付款了，这里付款是不能使用支付宝的，只能使用PayPal国际版（中国版也不能用）、比特币、信用卡或者Visa卡等。由于博主这些都没有（穷逼学生），只能使用万能的淘宝，淘宝搜索<strong>代付</strong>就行了，不过需要几块钱的手续费，反正博主最后48块钱人民币搞定的（5.99美元=41.2453人民币元）</p>
+<p>8.付款完成之后你就可以点击Service的My Service选项查看自己的服务器，点击你的服务器就可以看到服务器的控制面板（控制面板的图就不放了），里面有服务器的ip、登录账号密码等等所有信息，可以使用ssh工具登录服务器进行第二步操作了！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-1150c389e692c0f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-0e6013ba263c8db4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="二、搭建Shadowsocks服务"><a href="#二、搭建Shadowsocks服务" class="headerlink" title="二、搭建Shadowsocks服务"></a>二、搭建Shadowsocks服务</h2><p>Shadowsocks是一个使用<a href="https://zh.wikipedia.org/wiki/SOCKS#SOCK5" target="_blank" rel="external">Socks5</a>代理方式的代理服务。Shadowsocks分为服务器端和客户端。在使用之前，需要先将服务器端部署到服务器上面，然后通过客户端连接并创建本地代理。本节将从服务器端搭建与客户端搭建两方面来讲。</p>
+<p>Shadowsocks的github地址：<a href="https://github.com/shadowsocks" target="_blank" rel="external">https://github.com/shadowsocks</a></p>
+<h3 id="1-搭建Shadowsocks服务端"><a href="#1-搭建Shadowsocks服务端" class="headerlink" title="1.搭建Shadowsocks服务端"></a>1.搭建Shadowsocks服务端</h3><ul>
+<li>首先用ssh工具登录到你的服务器，然后使用以下命令查看一下你的linux发行版是什么，如果按照我的教程一步一步的来，应该都是CentOS发行版，下面安装ShadowSocks的命令也是适用于CentOS发行版的。（如果选择了Debian发行版的系统，自己去Shadowsocks的github上查找相关搭建方法）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/issue</div></pre></td></tr></table></figure>
+<ul>
+<li>使用yum命令安装ShadowSocks服务器端（这里不要使用Shadowsocks的github地址上提供的安装办法，因为我们买的sentris服务器安装的python版本太低了）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 首先安装python包管理工具和安装pip</span></div><div class="line">yum install python-setuptools &amp;&amp; easy_install pip</div><div class="line"></div><div class="line"><span class="comment"># 使用pip直接安装shadowsocks服务器端</span></div><div class="line">pip install shadowsocks</div></pre></td></tr></table></figure>
+<ul>
+<li>我们使用配置文件的方式配置ShadowSocks服务器端，需要自己创建配置文件/etc/shadowsocks.json</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 使用touch命令在etc目录下创建配置文件/etc/shadowsocks.json</span></div><div class="line">touch /etc/shadowsocks.json</div><div class="line"></div><div class="line"><span class="comment"># 使用vi写入配置参数</span></div><div class="line">vi /etc/shadowsocks.json</div><div class="line"></div><div class="line"><span class="comment"># 写入的参数如下：</span></div><div class="line">&#123;</div><div class="line"><span class="string">"server"</span>:<span class="string">"my_server_ip"</span>,</div><div class="line"><span class="string">"server_port"</span>:8388,</div><div class="line"><span class="string">"local_address"</span>:<span class="string">"127.0.0.1"</span>,</div><div class="line"><span class="string">"local_port"</span>:1080,</div><div class="line"><span class="string">"password"</span>:<span class="string">"mypassword"</span>,</div><div class="line"><span class="string">"timeout"</span>:300,</div><div class="line"><span class="string">"method"</span>:<span class="string">"rc4-md5"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>各字段说明：（更多配置见<a href="https://github.com/shadowsocks/shadowsocks/wiki/Configuration-via-Config-File" target="_blank" rel="external">这里</a>）</p>
+<blockquote>
+<p> server:服务器IP<br>    server_port:服务器端口，一般设置为8388<br>    local_address:本地地址，一般设置为127.0.0.1<br>    local_port:本地端端口，一般设置为1080<br>    password:用来加密的密码<br>    timeout:超时时间（秒）<br>    method:加密方法，可选择aes-256-cfb，des-cfb， rc4-md5”等，默认的是aes-256-cfb，推荐使用更快的rc4-md5</p>
+</blockquote>
+<ul>
+<li>使用配置文件在后台运行Shadowsocks服务</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 后台启动</span></div><div class="line">ssserver -c /etc/shadowsocks.json <span class="_">-d</span> start</div><div class="line"></div><div class="line"><span class="comment"># 关闭服务</span></div><div class="line">ssserver -c /etc/shadowsocks.json <span class="_">-d</span> stop</div></pre></td></tr></table></figure>
+<h3 id="2-安装Shadowsocks客户端"><a href="#2-安装Shadowsocks客户端" class="headerlink" title="2.安装Shadowsocks客户端"></a>2.安装Shadowsocks客户端</h3><ul>
+<li><p>首先访问Shadowsocks的github地址下载最新版本的Shadowsocks客户端<br>地址：<a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="external">https://github.com/shadowsocks/shadowsocks-windows/releases</a></p>
 </li>
-<li><p>其中Iterator与forEach最大的差别就是在方法<code>remove()</code>上,由于在Iterator的remove()方法中维护一个标志位,所以删除元素时不会出现异常    </p>
+<li><p>下载好之后双击exe打开（绿色版，没有安装过程），输入前面在Shadowsocks服务端配置文件中配置的信息，包括服务器地址、服务器端口、密码、加密方式、超时和代理端口，输入完成之后点击确定即可。</p>
 </li>
 </ul>
-<h2 id="三-总结"><a href="#三-总结" class="headerlink" title="三. 总结"></a>三. 总结</h2><ul>
-<li>通过上面的代码,可以很清楚的看到在实现一个通用的遍历Collection中的元素时,Iterator与forEach这两种实现比for循环的代码更简洁、实现更容易。</li>
-<li>在实际使用过程中,如只是单纯的对Collection中的元素进行遍历,那么使用forEach相对来说比较方面,如果需要在遍历的过程中对Collection中的元素进行操作(如删除元素),那么无疑必须使用Iterator</li>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-5cacac7075dafef5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>右键点击右下角的Shadowsocks小飞机图标，选择启动系统代理，并且在系统代理模式那里选择PAC模式（在PAC模式下系统会自动切换代理，如果访问的是墙内的网站，则不会使用代理，如果访问墙外的网站，则使用代理；在全局模式下则全部使用代理），最后选择开机启动，这样子就不用每次开机都要手动启动<br>Shadowsocks客户端了。</li>
 </ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-c0c6518c3a7d2312.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这样子本地Shadowsocks服务器就已经安装成功了，如果使用IE浏览器的话就可以正常的访问墙外的世界了，但是博主使用的是Chrome浏览器，还不能直接fq，还需要进一步的设置。</p>
+<h2 id="三、Chrome浏览器设置自动切换代理上网"><a href="#三、Chrome浏览器设置自动切换代理上网" class="headerlink" title="三、Chrome浏览器设置自动切换代理上网"></a>三、Chrome浏览器设置自动切换代理上网</h2><p>这里需要使用Chrome浏览器的一个代理管理插件——SwitchyOmega，这个插件能实现自动根据URL来决定是否使用代理。</p>
+<ul>
+<li>正常来说运行了Shadowsocks后就可以直接访问Chrome应用商店安装了，在应用商店上面搜索<a href="https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif?utm_source=chrome-ntp-icon" target="_blank" rel="external">SwitchyOmega</a>，然后添加至Chrome即可。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-36a0682c83a4bacf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>安装完成之后打开SwitchyOmega插件后，选择<strong>新建情景模式</strong>，情景模式名称随便填，我这里填为proxy，类型选择为代理服务器。（由于我已经存在一个名为proxy的情景模式了，所以会提示已存在）</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-89c297131a544a0b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>修改名为proxy的情景模式的配置，代理协议选择SOCKS5，代理服务器为127.0.0.1，代理端口为1080。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-ff17bf4455a36d40.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li><p>选择右边的<strong>自动切换/auto switch</strong>进行自动切换设置，在<strong>切换规则</strong>中先选择规则列表规则，然后将情景模式设置成proxy，然后设置默认情景模式为直连模式，在下面的<em>*规则列表设置</em>中选择AutoProxy，然后填入网址：<br><a href="https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt" target="_blank" rel="external">https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</a><br>点击立即更新情景模式即可。<br><img src="http://upload-images.jianshu.io/upload_images/2671458-ed628e338e3b04a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li><p>最后是最关键的一步，在浏览器右上角点击插件按钮，然后选择<strong>自动切换规则模式</strong>，这样只要在规则列表里面的网站都会fq访问。对于没在翻墻规则里面的网站，可以自己添加规则（无法访问的时候插件那图标会有显示，点击后就可以看到快速添加方法）。</p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2671458-91d046c8e431bb8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <hr>
-<p>续集：从源码上分析操作(删除)元素时为什么建议Iterator循环：<br><a href="http://www.jianshu.com/p/25f6856f8f51" target="_blank" rel="external">Collection与Iterator的remove()方法区别与ConcurrentModificationException异常</a></p>
+<blockquote>
+<p>主要参考文章：<br><a href="http://www.centoscn.com/image-text/install/2015/0510/5399.html" target="_blank" rel="external">CentOS6.6安装ShadowSocks服务端</a><br><a href="http://wxhp.org/shadowsocksr.html" target="_blank" rel="external">Chrome+SwitchyOmega+Shadowsocks 图文教程完整篇</a></p>
+</blockquote>
 
       
 
@@ -235,7 +317,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">翻墙</a>
         		</li>
       		
 		</ul>
@@ -291,7 +373,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/09/Java中三种遍历Collection中元素的方法(Iterator、forEach、for循环)对比1/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/09/利用Sentris特价服务器和Shadowsocks搭建自己的梯子/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -305,11 +387,15 @@
   
 <nav id="article-nav">
   
-  
-    <a href="/2017/04/09/Collection与Iterator的remove()方法区别与ConcurrentModificationException异常/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Collection与Iterator的remove()方法区别与ConcurrentModificationException异常</div>
-      <i class="icon-circle-right"></i>
+    <a href="/2017/04/09/Collection与Iterator的remove()方法区别与ConcurrentModificationException异常/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Collection与Iterator的remove()方法区别与ConcurrentModificationException异常
+        
+      </div>
     </a>
+  
   
 </nav>
 
@@ -408,6 +494,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">翻墙</a>
               </li>
             
             <div class="clearfix"></div>

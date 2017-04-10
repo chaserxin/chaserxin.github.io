@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>字符编码与字符集以及UTF-8总结 | 我才不花心的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前一直搞不清楚各种字符编码、字符集的区别，也被搞晕了很多次，只知道用UTF-8编码格式就行了。但是作为一个程序猿，秉着喜欢探索技术内部原理的精神，查阅了很多资料，决定搞清楚他们之间的爱恨情仇。  一、 字符集与字符编码字符集：字符集是由字符组成的一个集合。而字符是由数字、汉字和符号等信息单位的总称，一般来说不同国家的字符集有着不同的字符，但也有统一全世界大部分国家的语言的字符集UCS。 字符编码">
+  <meta name="description" content="之前一直搞不清楚各种字符编码、字符集的区别，也被搞晕了很多次，只知道用UTF-8编码格式就行了。但是作为一个程序猿，秉着喜欢探索技术内部原理的精神，查阅了很多资料，决定搞清楚他们之间的爱恨情仇。">
 <meta name="keywords" content="编码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字符编码与字符集以及UTF-8总结">
 <meta property="og:url" content="http://yoursite.com/2017/04/10/字符编码与字符集以及UTF8总结/index.html">
 <meta property="og:site_name" content="我才不花心的博客">
-<meta property="og:description" content="之前一直搞不清楚各种字符编码、字符集的区别，也被搞晕了很多次，只知道用UTF-8编码格式就行了。但是作为一个程序猿，秉着喜欢探索技术内部原理的精神，查阅了很多资料，决定搞清楚他们之间的爱恨情仇。  一、 字符集与字符编码字符集：字符集是由字符组成的一个集合。而字符是由数字、汉字和符号等信息单位的总称，一般来说不同国家的字符集有着不同的字符，但也有统一全世界大部分国家的语言的字符集UCS。 字符编码">
+<meta property="og:description" content="之前一直搞不清楚各种字符编码、字符集的区别，也被搞晕了很多次，只知道用UTF-8编码格式就行了。但是作为一个程序猿，秉着喜欢探索技术内部原理的精神，查阅了很多资料，决定搞清楚他们之间的爱恨情仇。">
 <meta property="og:image" content="http://oh8nrdqp2.bkt.clouddn.com/0.png">
 <meta property="og:image" content="http://oh8nrdqp2.bkt.clouddn.com/b2b7674f-3b95-4426-8be0-fc1c3a51e7ba.jpg">
 <meta property="og:image" content="http://oh8nrdqp2.bkt.clouddn.com/1.png">
 <meta property="og:image" content="http://oh8nrdqp2.bkt.clouddn.com/1.png">
-<meta property="og:updated_time" content="2017-04-10T12:12:14.982Z">
+<meta property="og:updated_time" content="2017-04-10T12:16:10.476Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字符编码与字符集以及UTF-8总结">
-<meta name="twitter:description" content="之前一直搞不清楚各种字符编码、字符集的区别，也被搞晕了很多次，只知道用UTF-8编码格式就行了。但是作为一个程序猿，秉着喜欢探索技术内部原理的精神，查阅了很多资料，决定搞清楚他们之间的爱恨情仇。  一、 字符集与字符编码字符集：字符集是由字符组成的一个集合。而字符是由数字、汉字和符号等信息单位的总称，一般来说不同国家的字符集有着不同的字符，但也有统一全世界大部分国家的语言的字符集UCS。 字符编码">
+<meta name="twitter:description" content="之前一直搞不清楚各种字符编码、字符集的区别，也被搞晕了很多次，只知道用UTF-8编码格式就行了。但是作为一个程序猿，秉着喜欢探索技术内部原理的精神，查阅了很多资料，决定搞清楚他们之间的爱恨情仇。">
 <meta name="twitter:image" content="http://oh8nrdqp2.bkt.clouddn.com/0.png">
   
     <link rel="alternative" href="/atom.xml" title="我才不花心的博客" type="application/atom+xml">
@@ -179,6 +179,7 @@
       
         <p>之前一直搞不清楚各种字符编码、字符集的区别，也被搞晕了很多次，只知道用UTF-8编码格式就行了。但是作为一个程序猿，秉着喜欢探索技术内部原理的精神，查阅了很多资料，决定搞清楚他们之间的爱恨情仇。</p>
 <p><img src="http://oh8nrdqp2.bkt.clouddn.com/0.png" alt=""></p>
+<a id="more"></a>
 <h2 id="一、-字符集与字符编码"><a href="#一、-字符集与字符编码" class="headerlink" title="一、 字符集与字符编码"></a>一、 字符集与字符编码</h2><p><strong>字符集</strong>：字符集是由字符组成的一个集合。而字符是由数字、汉字和符号等信息单位的总称，一般来说不同国家的字符集有着不同的字符，但也有统一全世界大部分国家的语言的字符集UCS。</p>
 <p><strong>字符编码</strong>：字符编码把字符集中的每一个字符对应成不同的二进制数，以便文本在计算机中存储和通过网络传输。在计算机发展早期，每一个字符对应一个特定的二进制位，字符集与字符编码不作区分是同一个概念，如：ASCII、GB2312B、BIG5、Shift_JIS等；但是随着计算机的发展。字符集不断扩大，为了节约存储空间，出现了各式各样的字符编码。</p>
 <h2 id="二、ASCII编码"><a href="#二、ASCII编码" class="headerlink" title="二、ASCII编码"></a>二、ASCII编码</h2><p>我们知道最早的计算机是美国弄出来的，在“冯•诺依曼结构”中计算机只能存储和处理二进制文件，所以当时为了能让计算机处理和存储英文字符，美国国家标准学会制定了<strong>ASCII</strong>（American Standard Code for Information Interchange，美国信息交换标准代码），ASCII码使用指定的7 位或8 位二进制数组合来表示128 或256 种可能的字符。标准ASCII 码也叫基础ASCII码，使用7 位二进制数（剩下的1位二进制为0）来表示所有的大写和小写字母，数字0 到9、标点符号， 以及在美式英语中使用的特殊控制字符。比如大写的字母A是65（二进制01000001）。</p>
@@ -438,11 +439,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">编码</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">编码</a>
               </li>
             
             <div class="clearfix"></div>

@@ -152,6 +152,114 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-字符编码与字符集以及UTF8总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/10/字符编码与字符集以及UTF8总结/">字符编码与字符集以及UTF-8总结</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/10/字符编码与字符集以及UTF8总结/" class="archive-article-date">
+  	<time datetime="2017-04-10T12:12:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前一直搞不清楚各种字符编码、字符集的区别，也被搞晕了很多次，只知道用UTF-8编码格式就行了。但是作为一个程序猿，秉着喜欢探索技术内部原理的精神，查阅了很多资料，决定搞清楚他们之间的爱恨情仇。</p>
+<p><img src="http://oh8nrdqp2.bkt.clouddn.com/0.png" alt=""></p>
+<h2 id="一、-字符集与字符编码"><a href="#一、-字符集与字符编码" class="headerlink" title="一、 字符集与字符编码"></a>一、 字符集与字符编码</h2><p><strong>字符集</strong>：字符集是由字符组成的一个集合。而字符是由数字、汉字和符号等信息单位的总称，一般来说不同国家的字符集有着不同的字符，但也有统一全世界大部分国家的语言的字符集UCS。</p>
+<p><strong>字符编码</strong>：字符编码把字符集中的每一个字符对应成不同的二进制数，以便文本在计算机中存储和通过网络传输。在计算机发展早期，每一个字符对应一个特定的二进制位，字符集与字符编码不作区分是同一个概念，如：ASCII、GB2312B、BIG5、Shift_JIS等；但是随着计算机的发展。字符集不断扩大，为了节约存储空间，出现了各式各样的字符编码。</p>
+<h2 id="二、ASCII编码"><a href="#二、ASCII编码" class="headerlink" title="二、ASCII编码"></a>二、ASCII编码</h2><p>我们知道最早的计算机是美国弄出来的，在“冯•诺依曼结构”中计算机只能存储和处理二进制文件，所以当时为了能让计算机处理和存储英文字符，美国国家标准学会制定了<strong>ASCII</strong>（American Standard Code for Information Interchange，美国信息交换标准代码），ASCII码使用指定的7 位或8 位二进制数组合来表示128 或256 种可能的字符。标准ASCII 码也叫基础ASCII码，使用7 位二进制数（剩下的1位二进制为0）来表示所有的大写和小写字母，数字0 到9、标点符号， 以及在美式英语中使用的特殊控制字符。比如大写的字母A是65（二进制01000001）。</p>
+<p><img src="http://oh8nrdqp2.bkt.clouddn.com/b2b7674f-3b95-4426-8be0-fc1c3a51e7ba.jpg" alt="ASCII码表"></p>
+<h2 id="三、非ASCII编码与ANSI编码"><a href="#三、非ASCII编码与ANSI编码" class="headerlink" title="三、非ASCII编码与ANSI编码"></a>三、非ASCII编码与ANSI编码</h2><p>在英文中，用128个字符来编码就足够了，但是对于其他语言，128个字符是完全不够了。比如在法语中，字母上方有注音符号，它就无法用ASCII码表示。于是，一些欧洲国家就决定，利用ASCII码表中闲置的128-255这一段来表示自己国家的字符集。比如，法语中的é的编码为130（二进制10000010）。于是国际标准化组织在ASCII的基础上进行了扩展，形成了ISO-8859标准，跟<strong>EASCII</strong>类似，兼容ASCII。然而欧洲有很多国家并且每个国家的的语言不一样，于是不同的国家利用ASCII码表的128-255这一段，纷纷制定了符合本国语言的标准。对于不同国家的标准，128-255这一段表示的字符不一样，无法兼容。</p>
+<p>而对于亚洲来说，语言环境更加复杂，对于中国来说，汉字就多达10万左右。一个字节只能表示256种符号，肯定是不够的，就必须使用多个字节表达一个符号。于是中国国家标准总局制定了<strong>GB2312</strong>编码方式，使用两个字节表示一个汉字，所以理论上最多可以表示256x256=65536个符号。不止中国，在亚洲的不同地方也有着不同的编码方式，比如中国台湾有<strong>BIG5</strong>编码方式，日本有<strong>Shift_JIS</strong>编码方式。</p>
+<p>像上面说的，那时候计算机正在发展，各国之间的交流少，编码问题不是特别大，那时候为了方便的用户的使用，屏蔽各个国家的不同的编码方式，出现了<strong>ANSI</strong>编码（严格来说不算是一种编码方式），ANSI到现在为止也是默认的编码方式，ANSI会根据当前系统的语言自动的使用一种编码方式，比如对于英文文件是ASCII编码，对于简体中文文件是GB2312编码（只针对Windows简体中文版，如果是繁体中文版会采用Big5码）等</p>
+<h2 id="四、UCS字符集与Unicode字符编码"><a href="#四、UCS字符集与Unicode字符编码" class="headerlink" title="四、UCS字符集与Unicode字符编码"></a>四、UCS字符集与Unicode字符编码</h2><p>由于每个国家有着自己的编码方式，互不兼容，乱码问题经常出现（对同一组二进制数据，不同的编码会解析出不同的字符，用对了编码，解析出来的字符组成的文字是有意义的，用错了编码，解析出来的字符组成的文字是没意义的，也就是通常所说的乱码）。要想打开一个文本文件，就必须知道它的编码方式，否则用错误的编码方式解读，就会出现乱码。为什么电子邮件常常出现乱码？就是因为发信人和收信人使用的编码方式不一样。</p>
+<p>为了能够方便全世界各国的计算机进行正常的交流，计算机科学领域发展的一个老套路——标准化出现了。<strong>UCS</strong>与<strong>Unicode</strong>应运而生。<strong>UCS</strong>（Universal Character Set，通用字符集）是由ISO（International Organization for Standardization，国际标准化组织）标准所定义的标准<strong>字符集</strong>。<strong>Unicode</strong>是伴随着UCS的标准而发展的一种统一的标准<strong>字符编码</strong>。</p>
+<p>UCS包括了其他所有字符集。它保证了与其他字符集的双向兼容，即，如果你将任何文本字符串翻译到UCS格式，然后再翻译回原编码，你不会丢失任何信息。UCS包含了已知语言的所有字符。除了拉丁语、希腊语、斯拉夫语、希伯来语、阿拉伯语、亚美尼亚语、格鲁吉亚语，还包括中文、日文、韩文这样的方块文字，UCS还包括大量的图形、印刷、数学、科学符号。UCS至今仍在不断增修，每个新版本都加入更多新的字符，现在的规模可以容纳100多万个符号。每个符号的编码都不一样，UCS不仅给每个字符分配一个代码，而且赋予了一个正式的名字。表示一个UCS或Unicode值的十六进制数通常在前面加上“U+”，例如“U+0041”代表字符“A”。</p>
+<p>在UCS字符集的基础上Unicode字符编码把所有语言都统一到一套编码里，这样就不会再有乱码问题了。Unicode标准也在不断发展，但最常用的是用两个字节表示一个字符（如果要用到非常偏僻的字符，就需要四个字节）。现代操作系统和大多数编程语言都直接支持Unicode。</p>
+<h2 id="五、ASCII编码与Unicode编码"><a href="#五、ASCII编码与Unicode编码" class="headerlink" title="五、ASCII编码与Unicode编码"></a>五、ASCII编码与Unicode编码</h2><p>在UCS与Unicode出现之前字符集与字符编码不作区分，两者为同一个。比如ASCII就既表示由大小写字母、符号等组成的字符集，也表示这个字符集所对应的字符编码。<strong>但是UCS与Unicode出现以后，字符集与字符编码开始区分</strong>。UCS为全世界大部分国家的字符集的集合，Unicode是以UCS字符集为基础的字符编码。虽然Unicode统一所有的字符编码，但是由于在此之前很多老系统用的都是ASCII编码或者兼容ASCII的编码，所以要求新编码方案必须能够兼容原来的系统，并且由于Unicode自身存在着一些问题，在很长一段时间内无法推广，直到互联网的出现。</p>
+<h3 id="问题一：如何区分ASCII与Unicode"><a href="#问题一：如何区分ASCII与Unicode" class="headerlink" title="问题一：如何区分ASCII与Unicode"></a>问题一：如何区分ASCII与Unicode</h3><p>在ASCII编码中，每个字符为一个字节，而在Unicode编码中，每个字符为两个字节，比如：字母 A 用ASCII编码是十进制的 5，二进制的 01000001；但是Unicode使用两个字节表示一个字符，那应该如何表示Unicode编码中的字母 A 呢？你可能很容易的想到，直接在ASCII表示的字母 A 的二进制前面加0就好了，于是字母 A 用Unicode编码也是十进制的“U+0041”，二进制的 00000000 01000001。但是这样子随即出现第二个问题。</p>
+<h3 id="问题二：Unicode表示纯英文浪费存储空间"><a href="#问题二：Unicode表示纯英文浪费存储空间" class="headerlink" title="问题二：Unicode表示纯英文浪费存储空间"></a>问题二：Unicode表示纯英文浪费存储空间</h3><p>从上面的例子我们可以看出，要区分ASCII与Unicode只需要在ASCII编码表示的字符的二进制前面添加8个二进制0即可，但是如果我们的文本文件是纯英文文件，如果用ASCII编码的话每个字符只需要一个字节即可表示，但是如果使用Unicode编码的话每个字符需要两个字节，这样子所需空间增加了一倍，在存储和传输上就十分不划算。</p>
+<h2 id="六、Unicode与UTF-8"><a href="#六、Unicode与UTF-8" class="headerlink" title="六、Unicode与UTF-8"></a>六、Unicode与UTF-8</h2><p>随着互联网的普及，各国之间的交流越来越频繁，急需一种既能够统一编码全世界大部分国家的字符集，又能够完美兼容ASCII，并且不会造成空间浪费的编码方式。就在这个时候，把Unicode编码转化为“可变长编码”的UTF-8字符编码出现了！UTF-8编码把一个Unicode字符根据不同的数字大小编码成1-6个字节，常用的英文字母被编码成1个字节，汉字通常是3个字节，只有很生僻的字符才会被编码成4-6个字节。如果你要传输的文本包含大量英文字符，用UTF-8编码就能节省空间。例如：字符 A 用ASCII字符编码为01000001，用Unicode字符编码00000000 01000001，用UTF-8字符编码为01000001。从例子中可以看出，UTF-8可以完美的兼容ASCII，并且可以说UTF-8把ASCII当成自己的一部分。</p>
+<h3 id="UTF-8字符编码的实现"><a href="#UTF-8字符编码的实现" class="headerlink" title="UTF-8字符编码的实现"></a>UTF-8字符编码的实现</h3><p>UTF-8的编码规则很简单，只有二条：</p>
+<p>1）对于单字节的符号，字节的第一位设为0，后面7位为这个符号的unicode码。因此对于英语字母，UTF-8编码和ASCII码是相同的。</p>
+<p>2）对于n字节的符号（n&gt;1），第一个字节的前n位都设为1，第n+1位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的unicode码。</p>
+<p>下表总结了编码规则，字母x表示可用编码的位。</p>
+<blockquote>
+<p>Unicode符号范围             | UTF-8编码方式<br>(十六进制)                 | （二进制）<br>————————————– + ——————————————————–<br>0000 0000-0000 007F         | 0xxxxxxx<br>0000 0080-0000 07FF      | 110xxxxx 10xxxxxx<br>0000 0800-0000 FFFF      | 1110xxxx 10xxxxxx 10xxxxxx<br>0001 0000-0010 FFFF      | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</p>
+</blockquote>
+<p>跟据上表，解读UTF-8编码非常简单。如果一个字节的第一位是0，则这个字节单独就是一个字符；如果第一位是1，则连续有多少个1，就表示当前字符占用多少个字节。</p>
+<p>下面，以汉字”严”为例，演示如何实现UTF-8编码。</p>
+<p>已知”严”的unicode是4E25（100111000100101），根据上表，可以发现4E25处在第三行的范围内（0000 0800-0000 FFFF），因此”严”的UTF-8编码需要三个字节，即格式是”1110xxxx 10xxxxxx 10xxxxxx”。然后，从”严”的最后一个二进制位开始，依次从后向前填入格式中的x，多出的位补0。这样就得到了，”严”的UTF-8编码是”11100100 10111000 10100101”，转换成十六进制就是E4B8A5。</p>
+<h3 id="在存储和传输过程中UTF-8与Unicode的转换"><a href="#在存储和传输过程中UTF-8与Unicode的转换" class="headerlink" title="在存储和传输过程中UTF-8与Unicode的转换"></a>在存储和传输过程中UTF-8与Unicode的转换</h3><p>计算机系统通用的字符编码工作方式：在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。</p>
+<ul>
+<li>用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件：</li>
+</ul>
+<p><img src="http://oh8nrdqp2.bkt.clouddn.com/1.png" alt=""></p>
+<ul>
+<li><p>浏览网页的时候，服务器会把动态生成的Unicode内容转换为UTF-8再传输到浏览器，所以你看到很多网页的源码上会有类似<code>&lt;meta charset=&quot;UTF-8&quot; /&gt;</code>的信息，表示该网页正是用的UTF-8编码：</p>
+<p><img src="http://oh8nrdqp2.bkt.clouddn.com/1.png" alt=""></p>
+<p>​</p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>本文部分内容参考、部分图文摘抄以下博客</p>
+<p><a href="http://www.jianshu.com/p/bd7a6c508c33" target="_blank" rel="external">郭文圣：字符，字符集，字符编码</a></p>
+<p><a href="字符编码笔记：ASCII，Unicode和UTF-8">阮一峰：字符编码笔记：ASCII，Unicode和UTF-8</a></p>
+<p><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431664106267f12e9bef7ee14cf6a8776a479bdec9b9000" target="_blank" rel="external">廖雪峰：字符串和编码</a></p>
+<p><a href="https://www.zhihu.com/question/20650946" target="_blank" rel="external">知乎问题：Windows 记事本的 ANSI、Unicode、UTF-8 这三种编码模式有什么区别？</a></p>
+<p><a href="https://zh.wikipedia.org/wiki/Unicode" target="_blank" rel="external">维基百科：Unicode</a></p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编码</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/10/字符编码与字符集以及UTF8总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-利用Sentris特价服务器和Shadowsocks搭建自己的梯子" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -437,11 +545,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">翻墙</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">翻墙</a>
+                <a href="javascript:void(0)" class="js-tag color3">编码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
             
             <div class="clearfix"></div>

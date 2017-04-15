@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>我才不花心的博客</title>
+  <title>Python并行遍历zip()函数 | 我才不花心的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="河海大学14级咸鱼一条，主攻Java Web">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我才不花心的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="zip()函数在运算时，会以一个或多个序列做为参数，返回一个元组的列表。同时将这些序列中并排的元素配对。 一、zip()基本操作方法例如，有两个列表： 12a = [1,2,3]b = [4,5,6] 在python 3.0中，使用zip()函数来可以把列表合并，并创建一个可迭代对象，使用时必须将其包含在一个list中，方便一次性显示出所有结果 123456z = zip(a,b)print(z)">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python并行遍历zip()函数">
+<meta property="og:url" content="http://yoursite.com/2017/04/15/Python并行遍历zip()函数/index.html">
 <meta property="og:site_name" content="我才不花心的博客">
-<meta property="og:description" content="河海大学14级咸鱼一条，主攻Java Web">
+<meta property="og:description" content="zip()函数在运算时，会以一个或多个序列做为参数，返回一个元组的列表。同时将这些序列中并排的元素配对。 一、zip()基本操作方法例如，有两个列表： 12a = [1,2,3]b = [4,5,6] 在python 3.0中，使用zip()函数来可以把列表合并，并创建一个可迭代对象，使用时必须将其包含在一个list中，方便一次性显示出所有结果 123456z = zip(a,b)print(z)">
+<meta property="og:updated_time" content="2017-04-15T06:35:05.173Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我才不花心的博客">
-<meta name="twitter:description" content="河海大学14级咸鱼一条，主攻Java Web">
+<meta name="twitter:title" content="Python并行遍历zip()函数">
+<meta name="twitter:description" content="zip()函数在运算时，会以一个或多个序列做为参数，返回一个元组的列表。同时将这些序列中并排的元素配对。 一、zip()基本操作方法例如，有两个列表： 12a = [1,2,3]b = [4,5,6] 在python 3.0中，使用zip()函数来可以把列表合并，并创建一个可迭代对象，使用时必须将其包含在一个list中，方便一次性显示出所有结果 123456z = zip(a,b)print(z)">
   
     <link rel="alternative" href="/atom.xml" title="我才不花心的博客" type="application/atom+xml">
   
@@ -150,16 +152,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Python并行遍历zip()函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Python并行遍历zip()函数" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/15/Python并行遍历zip()函数/">Python并行遍历zip()函数</a>
+    <h1 class="article-title" itemprop="name">
+      Python并行遍历zip()函数
     </h1>
   
 
@@ -177,82 +177,44 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line">b = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div></pre></td></tr></table></figure>
 <p>在python 3.0中，使用zip()函数来可以把列表合并，并创建一个可迭代对象，使用时必须将其包含在一个list中，方便一次性显示出所有结果</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">z = zip(a,b)</div><div class="line">print(z)</div><div class="line"><span class="comment"># &lt;zip object at 0x000001D8992CC0C8&gt;</span></div><div class="line"></div><div class="line">list(zip(a,b))</div><div class="line"><span class="comment"># [(1, 4), (2, 5), (3, 6)]</span></div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/04/15/Python并行遍历zip()函数/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<a id="more"></a>
+<p>zip()参数可以接受任何类型的序列，同时也可以有两个以上的参数；当传入参数的长度不同时，zip能自动以最短序列长度为准进行截取，获得元组。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">str1 = <span class="string">'abc'</span></div><div class="line">str2 = <span class="string">'def123'</span></div><div class="line">list(zip(str1,str2))</div><div class="line"><span class="comment"># [('a', 'd'), ('b', 'e'), ('c', 'f')]</span></div></pre></td></tr></table></figure>
+<h2 id="二、搭配for循环，支持并行迭代操作方法"><a href="#二、搭配for循环，支持并行迭代操作方法" class="headerlink" title="二、搭配for循环，支持并行迭代操作方法"></a>二、搭配for循环，支持并行迭代操作方法</h2><p>zip()方法用在for循环中，就会支持并行迭代：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">l1 = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</div><div class="line">l2 = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</div><div class="line"></div><div class="line"><span class="keyword">for</span> (x,y) <span class="keyword">in</span> zip(l1,l2):</div><div class="line">	<span class="keyword">print</span> x,y,<span class="string">'--'</span>,x*y</div><div class="line"></div><div class="line"><span class="comment"># 2 4 -- 8</span></div><div class="line"><span class="comment"># 3 5 -- 15</span></div><div class="line"><span class="comment"># 4 6 -- 24</span></div></pre></td></tr></table></figure>
+<p>其实它的工作原理就是使用了zip()函数生成的可迭代对象，在for循环里解包zip结果中的元组，用元组赋值运算。就好像(x,y)=(2,6)，赋值、序列解包操作。在对文件的操作中我们也会用到遍历，例如Python遍历文件夹目录与文件操作，就是很方便实用的。</p>
+<h2 id="三、zip-在Python-2-和Python-3中的不同"><a href="#三、zip-在Python-2-和Python-3中的不同" class="headerlink" title="三、zip()在Python 2 和Python 3中的不同"></a>三、zip()在Python 2 和Python 3中的不同</h2><h3 id="问题一：zip方法在Python-2-和Python-3中的不同"><a href="#问题一：zip方法在Python-2-和Python-3中的不同" class="headerlink" title="问题一：zip方法在Python 2 和Python 3中的不同"></a>问题一：zip方法在Python 2 和Python 3中的不同</h3><p>Python 2 的代码演示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ python2</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = zip((<span class="number">1</span>, <span class="number">2</span>), (<span class="number">3</span>, <span class="number">4</span>))</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">[(<span class="number">1</span>, <span class="number">3</span>), (<span class="number">2</span>, <span class="number">4</span>)]</div><div class="line"><span class="comment">#  可以看到这里返回的是一个list</span></div></pre></td></tr></table></figure>
+<p>Python 3 的代码演示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">$ python3</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = zip((<span class="number">1</span>, <span class="number">2</span>), (<span class="number">3</span>, <span class="number">4</span>))</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">&lt;zip object at <span class="number">0x1007096c8</span>&gt;</div><div class="line"><span class="comment"># 可以看到这里返回的是一个对象，这里就是2和3的不同点</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>dir(a)  <span class="comment"># 查看a的相关属性</span></div><div class="line">[<span class="string">'__class__'</span>, <span class="string">'__delattr__'</span>, <span class="string">'__dir__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__eq__'</span>, <span class="string">'__format__'</span>, <span class="string">'__ge__'</span>, <span class="string">'__getattribute__'</span>, <span class="string">'__gt__'</span>, <span class="string">'__hash__'</span>, <span class="string">'__init__'</span>, <span class="string">'__iter__'</span>, <span class="string">'__le__'</span>, <span class="string">'__lt__'</span>, <span class="string">'__ne__'</span>, <span class="string">'__new__'</span>, <span class="string">'__next__'</span>, <span class="string">'__reduce__'</span>, <span class="string">'__reduce_ex__'</span>, <span class="string">'__repr__'</span>, <span class="string">'__setattr__'</span>, <span class="string">'__sizeof__'</span>, <span class="string">'__str__'</span>, <span class="string">'__subclasshook__'</span>]</div><div class="line"><span class="comment"># 这里值得注意的是 '__iter__' 和 '__next__' 方法，说明a是一个支持遍历的对象</span></div><div class="line"><span class="comment"># 既然知道了a是一个支持遍历的对象，我们也就基本明白了a的用法了</span></div><div class="line"><span class="comment">### 和Python2的区别（一）：返回的是一个支持遍历的对象，而不是一个list本身</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> a: print(i)  <span class="comment"># in 方法</span></div><div class="line">...</div><div class="line">(<span class="number">1</span>, <span class="number">3</span>)</div><div class="line">(<span class="number">2</span>, <span class="number">4</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>next(a)  <span class="comment"># 我们测试__next__方法</span></div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</div><div class="line">StopIteration  <span class="comment"># 说明next方法是支持的，但是这里也说明了对象只能遍历一次</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = zip((<span class="number">1</span>, <span class="number">2</span>), (<span class="number">3</span>, <span class="number">4</span>))  <span class="comment"># 这里需要重新赋值，因为这个对象只能遍历一次</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>next(a)</div><div class="line">(<span class="number">1</span>, <span class="number">3</span>)  <span class="comment"># 运行良好</span></div><div class="line"><span class="comment">### 返回的对象支持遍历的操作</span></div></pre></td></tr></table></figure>
+<h3 id="问题二：为什么会有不同"><a href="#问题二：为什么会有不同" class="headerlink" title="问题二：为什么会有不同"></a>问题二：为什么会有不同</h3><p>最主要的原因应该是节约内存，可迭代的对象只有在使用某个元素时才会生成这个元素</p>
+<p>这个zip在不同版本的不同反应了python的一个演变：大部分返回list的函数不在返回list，而是返回一个支持遍历的对象，比如map、fiter之类的，基本的例子如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ python3</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = map(abs, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">-3</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">&lt;map object at <span class="number">0x100707ed0</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>list(a)  <span class="comment"># 如果不习惯，可以自己手动转化为list，也是写兼容代码需要注意的地方</span></div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ python2</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a = map(abs, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">-3</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>a</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div></pre></td></tr></table></figure>
 
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/15/Python并行遍历zip()函数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Beautiful Soup4 学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/15/Beautiful Soup4 学习/">Beautiful Soup4 学习</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/15/Beautiful Soup4 学习/" class="archive-article-date">
-  	<time datetime="2017-04-15T06:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>本文参考 <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/#id49">Beautiful Soup官方文档</a> ，做学习记录用</p>
-</blockquote>
-<h2 id="一、初始化"><a href="#一、初始化" class="headerlink" title="一、初始化"></a>一、初始化</h2><p>导入 BeautifulSoup4 包：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div></pre></td></tr></table></figure>
-<p>在构造 BeautifulSoup 对象时, BeautifulSoup 首先文档被转换成Unicode,并且HTML的实例都被转换成Unicode编码, 然后BeautifulSoup 使用指定的网页解析器来解析这段文档</p>
-<p>关于解析器的描述参考官方文档, BeautifulSoup 根据当前系统安装的库自动选择解析器,解析器的优先数序: lxml, html5lib, html.paser, <strong>推荐用 lxml 这个速度更快的解析器</strong></p>
-<p>构造 BeautifulSoup 对象：</p>
-        
-          <a class="article-more-a" href="/2017/04/15/Beautiful Soup4 学习/#more">more >></a>
-        
-      
-
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -265,10 +227,6 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -276,18 +234,78 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/15/Beautiful Soup4 学习/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/15/Python并行遍历zip()函数/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
+  
+<nav id="article-nav">
+  
+    <a href="/2017/04/15/Beautiful Soup4 学习/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Beautiful Soup4 学习
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
 
 
@@ -295,272 +313,10 @@
 
 
   
-    <article id="post-字符编码与字符集以及UTF8总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/10/字符编码与字符集以及UTF8总结/">字符编码与字符集以及UTF-8总结</a>
-    </h1>
+    <div class="duoshuo"></div>
   
 
-        
-        <a href="/2017/04/10/字符编码与字符集以及UTF8总结/" class="archive-article-date">
-  	<time datetime="2017-04-10T12:12:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前一直搞不清楚各种字符编码、字符集的区别，也被搞晕了很多次，只知道用UTF-8编码格式就行了。但是作为一个程序猿，秉着喜欢探索技术内部原理的精神，查阅了很多资料，决定搞清楚他们之间的爱恨情仇。</p>
-<p><img src="http://oh8nrdqp2.bkt.clouddn.com/0.png" alt=""></p>
-        
-          <a class="article-more-a" href="/2017/04/10/字符编码与字符集以及UTF8总结/#more">more >></a>
-        
-      
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编码</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/10/字符编码与字符集以及UTF8总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-利用Sentris特价服务器和Shadowsocks搭建自己的梯子" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/09/利用Sentris特价服务器和Shadowsocks搭建自己的梯子/">利用Sentris特价服务器和Shadowsocks搭建自己的梯子</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/09/利用Sentris特价服务器和Shadowsocks搭建自己的梯子/" class="archive-article-date">
-  	<time datetime="2017-04-09T03:06:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>博主之前一直使用蓝灯fq，由于蓝灯的速度实在太渣以及流量太少（毕竟免费），并且看过一些文章说免费的代理可能存在py，在无法忍受的前提下，决定自己动手搭建梯子。最开始是找到了一位大牛的博客(<a href="https://blog.phpgao.com/">老高的技术博客</a>)，里面推荐了几个国外的vps，也不是很贵，本来准备入手了，但是闲着无聊多看了下底下的评论，发现另外一位 dalao(<a href="http://nimaboke.com/">尼玛博客</a>)推荐了一个非常便宜的Sentris服务器，顿时眼前一亮（主要是没钱），于是开启了愉快的造梯子之旅。</p>
-<h2 id="一、购买Sentris特价服务器"><a href="#一、购买Sentris特价服务器" class="headerlink" title="一、购买Sentris特价服务器"></a>一、购买Sentris特价服务器</h2><p>Sentris是一家老牌美国IDC，之前也有用FreeServer.US的牌子推出过免费的vps，不过现在已经不提供了免费的了，但是现在还有活动，最低可以用$5.99 USD买三年的一台很小的vps，只有64M内存（博主买的就是这个），还是很实惠的。</p>
-<blockquote>
-<p>【注】：由于博主只是平时fq不怎么看视频，所以用64M的内存搭建一个梯子平时用用并且不看高清视频还是没问题的，如果你有到YouTube上看1080P视频的需求，亲测这个64M内存的vps是绝对不行的</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2017/04/09/利用Sentris特价服务器和Shadowsocks搭建自己的梯子/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">翻墙</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/09/利用Sentris特价服务器和Shadowsocks搭建自己的梯子/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Collection与Iterator的remove方法区别与ConcurrentModificationException异常" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/09/Collection与Iterator的remove方法区别与ConcurrentModificationException异常/">Collection与Iterator的remove方法区别与ConcurrentModificationException异常</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/09/Collection与Iterator的remove方法区别与ConcurrentModificationException异常/" class="archive-article-date">
-  	<time datetime="2017-04-09T02:53:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在我的上一篇文章  <a href="https://chaserxin.github.io/2017/04/09/Java%E4%B8%AD%E4%B8%89%E7%A7%8D%E9%81%8D%E5%8E%86Collection%E4%B8%AD%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95Iterator%E3%80%81forEach%E3%80%81for%E5%BE%AA%E7%8E%AF%E5%AF%B9%E6%AF%941">Java中三种遍历Collection中元素的方法Iterator、forEach、for循环对比</a> 中提到Iterator和forEach循环在遍历Collection中元素时最大的差别就是在方法<code>remove()</code>上,由于在Iterator的<code>remove()</code>方法中维护一个标志位,所以删除元素时不会出现异常，所以本篇文章就深入Collection与Iterator的源码看看内部究竟是如何实现的。</p>
-<h2 id="一-Collection及其实现类ArrayList的部分源码"><a href="#一-Collection及其实现类ArrayList的部分源码" class="headerlink" title="一. Collection及其实现类ArrayList的部分源码"></a>一. Collection及其实现类ArrayList的部分源码</h2><h3 id="1-Collection内部源码"><a href="#1-Collection内部源码" class="headerlink" title="1.Collection内部源码"></a>1.Collection内部源码</h3><p>首先我们来看一下Collection内部源码（为方便分析，此处只展示与本篇文章有关的部分）：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Iterable</span>&lt;<span class="title">E</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span></span>;</div><div class="line"></div><div class="line">    <span class="function">Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span></span>;</div><div class="line"></div><div class="line">    <span class="comment">/**</div><div class="line">     *  此处省去其他方法定义</div><div class="line">     */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2017/04/09/Collection与Iterator的remove方法区别与ConcurrentModificationException异常/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/09/Collection与Iterator的remove方法区别与ConcurrentModificationException异常/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Java中三种遍历Collection中元素的方法Iterator、forEach、for循环对比" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/09/Java中三种遍历Collection中元素的方法Iterator、forEach、for循环对比/">Java中三种遍历Collection中元素的方法Iterator、forEach、for循环对比</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/09/Java中三种遍历Collection中元素的方法Iterator、forEach、for循环对比/" class="archive-article-date">
-  	<time datetime="2017-04-09T02:15:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p><em>[注]仅对比此三种方法在实现下面的此功能中的区别</em><br><strong>在实现遍历并选择序列中的对象,而客户端程序员不必知道或关心该序列底层的结构</strong> <a href="https://book.douban.com/subject/2130190/">(摘自Java编程思想第四版)</a><br>也就是说在使用此方法时,不必考虑需要遍历的是ArrayList、LinkedList还是HashSet中的元素</p>
-</blockquote>
-<h2 id="一-三种方法实现方式代码"><a href="#一-三种方法实现方式代码" class="headerlink" title="一. 三种方法实现方式代码"></a>一. 三种方法实现方式代码</h2><h3 id="1-1-Iterator"><a href="#1-1-Iterator" class="headerlink" title="1.1 Iterator"></a>1.1 Iterator</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">display</span><span class="params">(Iterator&lt;Object&gt; it)</span> </span>&#123;</div><div class="line">	<span class="keyword">while</span>(it.hasNext())	&#123;</div><div class="line">		Object obj = it.next();</div><div class="line">		System.out.println(obj);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/04/09/Java中三种遍历Collection中元素的方法Iterator、forEach、for循环对比/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/09/Java中三种遍历Collection中元素的方法Iterator、forEach、for循环对比/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
 
 
           </div>
@@ -582,8 +338,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

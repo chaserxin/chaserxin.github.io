@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | 我才不花心的博客</title>
+  <title>Beautiful Soup4 学习 | 我才不花心的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="河海大学14级咸鱼一条，主攻Java Web">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我才不花心的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="本文参考 Beautiful Soup官方文档 ，做学习记录用  一、初始化导入 BeautifulSoup4 包： 1from bs4 import BeautifulSoup 在构造 BeautifulSoup 对象时, BeautifulSoup 首先文档被转换成Unicode,并且HTML的实例都被转换成Unicode编码, 然后BeautifulSoup 使用指定的网页解析器来解析这段">
+<meta name="keywords" content="python,爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Beautiful Soup4 学习">
+<meta property="og:url" content="http://yoursite.com/2017/04/15/Beautiful Soup4 学习/index.html">
 <meta property="og:site_name" content="我才不花心的博客">
-<meta property="og:description" content="河海大学14级咸鱼一条，主攻Java Web">
+<meta property="og:description" content="本文参考 Beautiful Soup官方文档 ，做学习记录用  一、初始化导入 BeautifulSoup4 包： 1from bs4 import BeautifulSoup 在构造 BeautifulSoup 对象时, BeautifulSoup 首先文档被转换成Unicode,并且HTML的实例都被转换成Unicode编码, 然后BeautifulSoup 使用指定的网页解析器来解析这段">
+<meta property="og:image" content="http://oh8nrdqp2.bkt.clouddn.com/%E7%BB%98%E5%9B%BE1.png">
+<meta property="og:updated_time" content="2017-04-15T06:15:26.400Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我才不花心的博客">
-<meta name="twitter:description" content="河海大学14级咸鱼一条，主攻Java Web">
+<meta name="twitter:title" content="Beautiful Soup4 学习">
+<meta name="twitter:description" content="本文参考 Beautiful Soup官方文档 ，做学习记录用  一、初始化导入 BeautifulSoup4 包： 1from bs4 import BeautifulSoup 在构造 BeautifulSoup 对象时, BeautifulSoup 首先文档被转换成Unicode,并且HTML的实例都被转换成Unicode编码, 然后BeautifulSoup 使用指定的网页解析器来解析这段">
+<meta name="twitter:image" content="http://oh8nrdqp2.bkt.clouddn.com/%E7%BB%98%E5%9B%BE1.png">
   
     <link rel="alternative" href="/atom.xml" title="我才不花心的博客" type="application/atom+xml">
   
@@ -150,36 +154,102 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Beautiful Soup4 学习" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/15/Beautiful Soup4 学习/" class="archive-article-date">
-  	<time datetime="2017-04-15T06:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/15/Beautiful Soup4 学习/">Beautiful Soup4 学习</a>
+    <h1 class="article-title" itemprop="name">
+      Beautiful Soup4 学习
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/04/15/Beautiful Soup4 学习/" class="archive-article-date">
+  	<time datetime="2017-04-15T06:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本文参考 <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/#id49" target="_blank" rel="external">Beautiful Soup官方文档</a> ，做学习记录用</p>
+</blockquote>
+<h2 id="一、初始化"><a href="#一、初始化" class="headerlink" title="一、初始化"></a>一、初始化</h2><p>导入 BeautifulSoup4 包：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div></pre></td></tr></table></figure>
+<p>在构造 BeautifulSoup 对象时, BeautifulSoup 首先文档被转换成Unicode,并且HTML的实例都被转换成Unicode编码, 然后BeautifulSoup 使用指定的网页解析器来解析这段文档</p>
+<p>关于解析器的描述参考官方文档, BeautifulSoup 根据当前系统安装的库自动选择解析器,解析器的优先数序: lxml, html5lib, html.paser, <strong>推荐用 lxml 这个速度更快的解析器</strong></p>
+<p>构造 BeautifulSoup 对象：</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">html_doc = <span class="string">"""</span></div><div class="line">&lt;html&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;title&gt;The Dormouse's story&lt;/title&gt;</div><div class="line">	&lt;/head&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">		&lt;p class="title"&gt;The Dormouse's story&lt;/p&gt;、</div><div class="line">		&lt;p class="title"&gt;The Dormouse's story&lt;/p&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">"""</div><div class="line"></div><div class="line">soup = BeautifulSoup(html_doc, <span class="string">'lxml'</span>)</div></pre></td></tr></table></figure>
+<p>当使用 lxml 解析器时,Beautiful Soup 将复杂HTML文档转换成一个复杂的DOM树结构进行解析:</p>
+<p><img src="http://oh8nrdqp2.bkt.clouddn.com/%E7%BB%98%E5%9B%BE1.png" alt=""></p>
+<p>每个节点都是Python对象,所有对象可以归纳为4种:  Tag, NavigableString, BeautifulSoup, Comment<br>这里只介绍简单的 tag 对象的方法, 其他对象参考官方文档</p>
+<h2 id="二、find-all-方法"><a href="#二、find-all-方法" class="headerlink" title="二、find_all 方法"></a>二、find_all 方法</h2><p>find_all() 几乎是 Beautiful Soup 中最常用的搜索方法; find_all 可以通过 tag 的名字或者属性等进行搜索,也可以将这个搜索策略结合起来搜索, find_all 根据你输入的策略找到所有符合要求的 tag，以 <strong>list</strong> 的方式返回。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find_all(self, name=<span class="keyword">None</span>, attrs=&#123;&#125;, recursive=<span class="keyword">True</span>, text=<span class="keyword">None</span>, limit=<span class="keyword">None</span>, **kwargs)</div></pre></td></tr></table></figure>
+<h3 id="2-1-搜索标签名字-name"><a href="#2-1-搜索标签名字-name" class="headerlink" title="2.1 搜索标签名字(name):"></a>2.1 搜索标签名字(name):</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span> find_all(tagname)        <span class="comment"># 直接搜索名为tagname的tag, 如:find_all('head')</span></div><div class="line"><span class="number">2</span> find_all(list)           <span class="comment"># 搜索在list中的tag, 如:find_all(['head', 'body'])</span></div><div class="line"><span class="number">3</span> find_all(dict)           <span class="comment"># 搜索在dict中的tag, 如:find_all(&#123;'head':True, 'body':True&#125;)</span></div><div class="line"><span class="number">4</span> find_all(re.compile(<span class="string">''</span>)) <span class="comment"># 搜索符合正则的tag, 如:find_all(re.compile('^p')) 搜索以p开头的tag</span></div><div class="line"><span class="number">5</span> find_all(<span class="keyword">lambda</span>)         <span class="comment"># 搜索函数返回结果为true的tag, 如:find_all(lambda name: len(name) == 1) 搜索长度为1的tag</span></div><div class="line"><span class="number">6</span> find_all(<span class="keyword">True</span>)           <span class="comment"># 搜索所有tag</span></div></pre></td></tr></table></figure>
+<h3 id="2-2-搜索属性-attrs"><a href="#2-2-搜索属性-attrs" class="headerlink" title="2.2 搜索属性(attrs):"></a>2.2 搜索属性(attrs):</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">1</span> find_all(<span class="string">'id'</span>:<span class="string">'xxx'</span>)                                 		  <span class="comment"># 寻找id属性为xxx的所有tag</span></div><div class="line"><span class="number">2</span> find_all(<span class="string">'_class'</span>:<span class="string">'xxx'</span>)								   <span class="comment"># 寻找class属性为xxx的所有tag</span></div><div class="line"><span class="number">3</span> find_all(attrs=&#123;<span class="string">'id'</span>:re.compile(<span class="string">'xxx'</span>), <span class="string">'algin'</span>:<span class="string">'xxx'</span>&#125;)	  <span class="comment"># 寻找id属性符合正则且algin属性为xxx的所有tag</span></div><div class="line"><span class="number">4</span> find_all(attrs=&#123;<span class="string">'id'</span>:<span class="keyword">True</span>, <span class="string">'algin'</span>:<span class="keyword">None</span>&#125;)              	  <span class="comment"># 寻找有id属性但是没有algin属性的所有tag</span></div></pre></td></tr></table></figure>
+<h3 id="2-3-搜索文字-text"><a href="#2-3-搜索文字-text" class="headerlink" title="2.3 搜索文字(text):"></a>2.3 搜索文字(text):</h3><p>注意，文字的搜索会导致其他搜索给的值如：tag, attrs都失效。<br>方法与搜索便签名字一样</p>
+<h3 id="2-4-recursive-limit"><a href="#2-4-recursive-limit" class="headerlink" title="2.4 recursive, limit:"></a>2.4 recursive, limit:</h3><p>recursive=False表示只搜索直接儿子，否则搜索整个子树，默认为True。<br>当使用findAll或者类似返回list的方法时，limit属性用于限制返回的数量，如findAll(‘p’, limit=2)： 返回首先找到的两个tag</p>
+<h3 id="2-5-像调用-find-all-一样调用tag"><a href="#2-5-像调用-find-all-一样调用tag" class="headerlink" title="2.5 像调用 find_all() 一样调用tag:"></a>2.5 像调用 find_all() 一样调用tag:</h3><p>由于find_all() 几乎是Beautiful Soup中最常用的搜索方法,所以我们定义了它的简写方法. BeautifulSoup 对象和 tag 对象可以被当作一个方法来使用,这个方法的执行结果与调用这个对象的 find_all() 方法相同;</p>
+<p>下面两行代码是等价的:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">soup.find_all(<span class="string">"a"</span>)</div><div class="line">soup(<span class="string">"a"</span>)</div></pre></td></tr></table></figure>
+<p>这两行代码也是等价的:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">soup.title.find_all(text=<span class="keyword">True</span>)</div><div class="line">soup.title(text=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<h2 id="三、find-方法"><a href="#三、find-方法" class="headerlink" title="三、find 方法"></a>三、find 方法</h2><p>find_all() 方法将返回文档中符合条件的所有tag,尽管有时候我们只想得到一个结果.比如文档中只有一个<body>标签,那么使用 find_all() 方法来查找<body>标签就不太合适, 使用 find_all 方法并设置 limit=1 参数不如直接使用 find() 方法.下面两行代码是等价的:</body></body></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">soup.find_all(<span class="string">'title'</span>, limit=<span class="number">1</span>)</div><div class="line"><span class="comment"># [&lt;title&gt;The Dormouse's story&lt;/title&gt;]</span></div><div class="line"></div><div class="line">soup.find(<span class="string">'title'</span>)</div><div class="line"><span class="comment"># &lt;title&gt;The Dormouse's story&lt;/title&gt;</span></div></pre></td></tr></table></figure>
+<p>唯一的区别是 find_all() 方法的返回结果是值包含一个元素的列表,而 find() 方法直接返回<strong>第一个</strong>符合条件的tag<br>find_all() 方法没有找到目标是返回空列表, find() 方法找不到目标时,返回 None .</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">print(soup.find(<span class="string">"nosuchtag"</span>))</div><div class="line"><span class="comment"># None</span></div></pre></td></tr></table></figure>
+<p>可以使用 soup.head.title 这种方式直接得到子节点,其中 head 和 title 是 tag的名字;</p>
+<p>这个简写的原理就是调用当前 tag 的 find() 方法:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">soup.head.title</div><div class="line"><span class="comment"># &lt;title&gt;The Dormouse's story&lt;/title&gt;</span></div><div class="line"></div><div class="line">soup.find(<span class="string">"head"</span>).find(<span class="string">"title"</span>)</div><div class="line"><span class="comment"># &lt;title&gt;The Dormouse's story&lt;/title&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="四、tag结点之间的关系"><a href="#四、tag结点之间的关系" class="headerlink" title="四、tag结点之间的关系"></a>四、tag结点之间的关系</h2><h3 id="4-1-子节点"><a href="#4-1-子节点" class="headerlink" title="4.1 子节点:"></a>4.1 子节点:</h3><p>tag的 <code>.contents</code> 属性可以将tag的子节点以列表的方式输出:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">soup.head.contents</div><div class="line"><span class="comment"># [&lt;title&gt;The Dormouse's story&lt;/title&gt;]</span></div><div class="line"></div><div class="line"><span class="comment"># 即可以使用congtents[i],来找到某个特定的结点</span></div><div class="line">soup.head.contents[<span class="number">0</span>]</div><div class="line"><span class="comment"># &lt;title&gt;The Dormouse's story&lt;/title&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="4-2-父节点"><a href="#4-2-父节点" class="headerlink" title="4.2 父节点:"></a>4.2 父节点:</h3><p>通过 <code>.parent</code> 属性来获取某个元素的父节点：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">title_tag = soup.title</div><div class="line">title_tag</div><div class="line"><span class="comment"># &lt;title&gt;The Dormouse's story&lt;/title&gt;</span></div><div class="line">title_tag.parent</div><div class="line"><span class="comment"># &lt;head&gt;&lt;title&gt;The Dormouse's story&lt;/title&gt;&lt;/head&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="4-3-兄弟结点"><a href="#4-3-兄弟结点" class="headerlink" title="4.3 兄弟结点:"></a>4.3 兄弟结点:</h3><p>在文档树中,使用 <code>.next_sibling</code> 和 <code>.previous_sibling</code> 属性来查询兄弟节点:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">sibling_soup = BeautifulSoup(<span class="string">"&lt;a&gt;&lt;b&gt;text1&lt;/b&gt;&lt;c&gt;text2&lt;/c&gt;&lt;/b&gt;&lt;/a&gt;"</span>)</div><div class="line"><span class="comment"># 因为&lt;b&gt;标签和&lt;c&gt;标签是同一层,所以他们是同一个元素的子节点,所以&lt;b&gt;和&lt;c&gt;可以被称为兄弟节点</span></div><div class="line"><span class="comment"># 一段文档以标准格式输出时,兄弟节点有相同的缩进级别.在代码中也可以使用这种关系.</span></div><div class="line"></div><div class="line">sibling_soup.b.next_sibling</div><div class="line"><span class="comment"># &lt;c&gt;text2&lt;/c&gt;</span></div><div class="line"></div><div class="line">sibling_soup.c.previous_sibling</div><div class="line"><span class="comment"># &lt;b&gt;text1&lt;/b&gt;</span></div></pre></td></tr></table></figure>
+<p>实际文档中的tag的 <code>.next_sibling</code> 和 <code>.previous_sibling</code> 属性通常是字符串或空白,因为空白或者换行也可以被视作一个节点，所以得到的结果可能是空白或者换行,<strong>所以在使用兄弟节点时需要注意这个坑！</strong></p>
+<h2 id="五、输出"><a href="#五、输出" class="headerlink" title="五、输出"></a>五、输出</h2><p>通过上述的方法找到了便签之后，需要将标签中相应的信息进行输出</p>
+<h3 id="5-1-格式化输出"><a href="#5-1-格式化输出" class="headerlink" title="5.1 格式化输出:"></a>5.1 格式化输出:</h3><p>prettify() 方法将Beautiful Soup的文档树格式化后以Unicode编码输出,每个XML/HTML标签都独占一行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">markup = <span class="string">'&lt;a href="http://example.com/"&gt;I linked to &lt;i&gt;example.com&lt;/i&gt;&lt;/a&gt;'</span></div><div class="line">soup = BeautifulSoup(markup)</div><div class="line">soup.prettify()</div><div class="line"><span class="comment"># '&lt;html&gt;\n &lt;head&gt;\n &lt;/head&gt;\n &lt;body&gt;\n  &lt;a href="http://example.com/"&gt;\n...'</span></div><div class="line"></div><div class="line">print(soup.prettify())</div><div class="line"><span class="comment"># &lt;html&gt;</span></div><div class="line"><span class="comment">#  &lt;head&gt;</span></div><div class="line"><span class="comment">#  &lt;/head&gt;</span></div><div class="line"><span class="comment">#  &lt;body&gt;</span></div><div class="line"><span class="comment">#   &lt;a href="http://example.com/"&gt;</span></div><div class="line"><span class="comment">#    I linked to</span></div><div class="line"><span class="comment">#    &lt;i&gt;</span></div><div class="line"><span class="comment">#     example.com</span></div><div class="line"><span class="comment">#    &lt;/i&gt;</span></div><div class="line"><span class="comment">#   &lt;/a&gt;</span></div><div class="line"><span class="comment">#  &lt;/body&gt;</span></div><div class="line"><span class="comment"># &lt;/html&gt;</span></div></pre></td></tr></table></figure>
+<p>BeautifulSoup 对象和它的tag节点都可以调用 prettify() 方法:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">print(soup.a.prettify())</div><div class="line"><span class="comment"># &lt;a href="http://example.com/"&gt;</span></div><div class="line"><span class="comment">#  I linked to</span></div><div class="line"><span class="comment">#  &lt;i&gt;</span></div><div class="line"><span class="comment">#   example.com</span></div><div class="line"><span class="comment">#  &lt;/i&gt;</span></div><div class="line"><span class="comment"># &lt;/a&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="5-2-get-text"><a href="#5-2-get-text" class="headerlink" title="5.2 get_text():"></a>5.2 get_text():</h3><p>如果只想得到tag中包含的文本内容,那么可以调用 get_text() 方法,这个方法获取到tag中包含的所有文本内容包括子孙tag中的内容,并将结果作为Unicode字符串返回:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">markup = <span class="string">'&lt;a href="http://example.com/"&gt;\nI linked to &lt;i&gt;example.com&lt;/i&gt;\n&lt;/a&gt;'</span></div><div class="line">soup = BeautifulSoup(markup)</div><div class="line"></div><div class="line">soup.get_text()</div><div class="line"><span class="comment"># u'\nI linked to example.com\n'</span></div><div class="line">soup.i.get_text()</div><div class="line"><span class="comment"># u'example.com'</span></div></pre></td></tr></table></figure>
+<h3 id="5-3-得到便签的属性"><a href="#5-3-得到便签的属性" class="headerlink" title="5.3 得到便签的属性:"></a>5.3 得到便签的属性:</h3><p>一个tag可能有很多个属性. tag <b class="boldest"> 有一个 “class” 的属性,值为 “boldest” ;</b></p>
+<p>tag的属性的操作方法与字典相同:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tag[<span class="string">'class'</span>]</div><div class="line"><span class="comment"># u'boldest'</span></div></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -195,171 +265,92 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/15/Beautiful Soup4 学习/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/10/字符编码与字符集以及UTF8总结/" class="archive-article-date">
-  	<time datetime="2017-04-10T12:12:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/10/字符编码与字符集以及UTF8总结/">字符编码与字符集以及UTF-8总结</a>
-    </h1>
+    <a href="/2017/04/10/字符编码与字符集以及UTF8总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          字符编码与字符集以及UTF-8总结
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编码</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/09/利用Sentris特价服务器和Shadowsocks搭建自己的梯子/" class="archive-article-date">
-  	<time datetime="2017-04-09T03:06:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/09/利用Sentris特价服务器和Shadowsocks搭建自己的梯子/">利用Sentris特价服务器和Shadowsocks搭建自己的梯子</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">翻墙</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/09/Collection与Iterator的remove方法区别与ConcurrentModificationException异常/" class="archive-article-date">
-  	<time datetime="2017-04-09T02:53:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/09/Collection与Iterator的remove方法区别与ConcurrentModificationException异常/">Collection与Iterator的remove方法区别与ConcurrentModificationException异常</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/09/Java中三种遍历Collection中元素的方法Iterator、forEach、for循环对比/" class="archive-article-date">
-  	<time datetime="2017-04-09T02:15:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/09/Java中三种遍历Collection中元素的方法Iterator、forEach、for循环对比/">Java中三种遍历Collection中元素的方法Iterator、forEach、for循环对比</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -382,8 +373,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
